@@ -1,12 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View } from 'react-native';
+import ItemList from './components/ItemList/ItemList';
+import { ItemsContext } from './components/ItemList/Provider/Provider';
+
 
 export default function App() {
+  const [toLocationList, setToLocationList] = useState([]);
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ItemsContext.Provider value={[toLocationList, setToLocationList]}>
+      <View style={styles.container}>
+        <ItemList />
+      </View>
+    </ItemsContext.Provider>
   );
 }
 
