@@ -14,7 +14,8 @@ export default ItemContainer
 
 const styles = StyleSheet.create({
     itemContainer: {
-        width: 400,
+        alignSelf: 'center',
+        width: 1000,
         maxWidth: '80%',
         backgroundColor: '#f6f6f6',
         shadowColor: '#000',
@@ -25,10 +26,11 @@ const styles = StyleSheet.create({
         shadowOpacity: .05,
         shadowRadius: 10,
         elevation: 2,
-        borderRadius: 50,
         padding: 10,
         justifyContent: 'center',
-        alignItems: 'center',
+        textAlign: 'center',
         marginVertical: 6,
+        borderTopRightRadius: 12,
+        borderBottomLeftRadius: 12,
     }
 })
