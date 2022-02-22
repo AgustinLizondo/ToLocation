@@ -6,6 +6,10 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import Fonts from './assets/Fonts';
 import WelcomeGuest from './components/WelcomeGuest';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [toLocationList, setToLocationList] = useState([]);
@@ -17,12 +21,18 @@ export default function App() {
   return (
     <ItemsContext.Provider value={[toLocationList, setToLocationList]}>
       <LogInContext.Provider value={[isLogged, setIsLogged]}>
-        <View style={styles.container}>
-          {isLogged
-            ? <ItemList />
-            : <WelcomeGuest />
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName={isLogged
+            ? 'HomeScreen'
+            : 'WelcomeScreen'
           }
-        </View>
+            headerShown={false}
+            // headerShown not working
+          >
+            <Stack.Screen name='WelcomeScreen' component={WelcomeGuest} />
+            <Stack.Screen name='HomeScreen' component={ItemList} />
+          </Stack.Navigator>
+        </NavigationContainer >
       </LogInContext.Provider>
     </ItemsContext.Provider>
   );
