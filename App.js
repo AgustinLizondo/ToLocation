@@ -26,11 +26,17 @@ export default function App() {
             ? 'HomeScreen'
             : 'WelcomeScreen'
           }
-            headerShown={false}
-            // headerShown not working
           >
-            <Stack.Screen name='WelcomeScreen' component={WelcomeGuest} />
-            <Stack.Screen name='HomeScreen' component={ItemList} />
+            <Stack.Screen
+            options={{
+              headerShown: false
+            }}
+            name='WelcomeScreen' component={WelcomeGuest} />
+            <Stack.Screen
+            options={{
+              headerShown: false
+            }}
+            name='HomeScreen' component={ItemList} />
           </Stack.Navigator>
         </NavigationContainer >
       </LogInContext.Provider>

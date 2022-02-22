@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 120,
     },
     inputText: {
         backgroundColor: Colors.Black,
