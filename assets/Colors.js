@@ -4,7 +4,8 @@ const Colors = {
     SemiBoldViolet: '#683FBF',
     SemiLightViolet: '#9B7ED9',
     LightViolet: '#C4AEF2',
-    White: '#F2F2F2',
+    White: '#FFF',
+    Gray: '#D3D3D3'
 }
 
 export default Colors
