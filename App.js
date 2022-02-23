@@ -1,30 +1,36 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import ItemList from './components/ItemList/ItemList';
-import { ItemsContext } from './components/ItemList/Provider/Provider';
+import { StyleSheet, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
-import TopCard from './components/TopInfoScreen/TopRightCard';
+import TopRightCard from './components/TopInfoScreen/TopRightCard';
 import Fonts from './assets/Fonts';
-import Colors from './assets/Colors';
 import LeftInfoScreen from './components/LeftInfoScreen/LeftInfoScreen';
+import BasicInfo from './components/TopInfoScreen/BasicInfo';
+import { MenuContext } from './components/TopInfoScreen/Provider/Provider';
+import { SelectedContext } from './components/LeftInfoScreen/Provider/Provider';
 
 export default function App() {
-  const [toLocationList, setToLocationList] = useState([]);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [selectedProfile, setSelectedProfile] = useState('walk');
 
   const [loaded] = useFonts(Fonts);
   if (!loaded) return <AppLoading />
 
   return (
-    <ItemsContext.Provider value={[toLocationList, setToLocationList]}>
-      <View style={styles.container}>
-        {/* <ItemList /> */}
-        <TopCard>
-          <Text style={{ color: Colors.White, fontFamily: 'Poppins-Medium' }}>Going to <Text>New York City</Text></Text>
-        </TopCard>
-        <LeftInfoScreen />
-      </View>
-    </ItemsContext.Provider>
+    <MenuContext.Provider value={[isMenuOpen, setIsMenuOpen]} >
+      <SelectedContext.Provider value={[selectedProfile, setSelectedProfile]}>
+        <View style={styles.container}>
+          <TopRightCard>
+            {isMenuOpen
+              ? null
+              : <BasicInfo />
+            }
+
+          </TopRightCard>
+          <LeftInfoScreen />
+        </View>
+      </SelectedContext.Provider>
+    </MenuContext.Provider>
   );
 }
 

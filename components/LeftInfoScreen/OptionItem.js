@@ -9,9 +9,14 @@ const OptionItem = ({ name, selected }) => {
     const [selectedProfile, setSelectedProfile] = useContext(SelectedContext);
 
     return (
-        <TouchableOpacity style={[styles.card, selected ? styles.selectedBorder : null]}>
+        <TouchableOpacity
+            style={[styles.card, selected ? styles.selectedBorder : null]}
+            onPress={() => setSelectedProfile(name)}
+        >
             <Icon name={name} size={48} color={selected ? Colors.BoldViolet : Colors.Gray} />
-            <Text style={[styles.text, { color: selected ? Colors.BoldViolet : Colors.Gray }]}>Walking</Text>
+            <Text style={[styles.text, { color: selected ? Colors.BoldViolet : Colors.Gray }]}>
+                {name === 'walk' ? 'Walking' : 'Cycling'}
+            </Text>
         </TouchableOpacity>
     )
 }
