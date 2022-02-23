@@ -26,17 +26,12 @@ export default function App() {
             ? 'HomeScreen'
             : 'WelcomeScreen'
           }
+            screenOptions={{ headerShown: false }}
           >
             <Stack.Screen
-            options={{
-              headerShown: false
-            }}
-            name='WelcomeScreen' component={WelcomeGuest} />
+              name='WelcomeScreen' component={WelcomeGuest} />
             <Stack.Screen
-            options={{
-              headerShown: false
-            }}
-            name='HomeScreen' component={ItemList} />
+              name='HomeScreen' component={ItemList} />
           </Stack.Navigator>
         </NavigationContainer >
       </LogInContext.Provider>
