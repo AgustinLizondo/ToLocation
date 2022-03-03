@@ -3,7 +3,6 @@ import React, { useContext, useState } from 'react';
 import { ItemsContext } from './Provider/Provider';
 import ItemContainer from './ItemContainer';
 import Colors from '../../assets/Colors';
-import Fonts from '../../assets/Fonts';
 
 const ItemList = () => {
     const [toLocationList, setToLocationList] = useContext(ItemsContext);

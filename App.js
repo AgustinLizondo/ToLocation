@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import ItemList from './components/ItemList/ItemList';
 import { ItemsContext, LogInContext } from './components/ItemList/Provider/Provider';
 import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import Fonts from './assets/Fonts';
-import WelcomeGuest from './components/WelcomeGuest';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-const Stack = createNativeStackNavigator();
+import MainNavigator from './components/MainNavigator';
 
 export default function App() {
   const [toLocationList, setToLocationList] = useState([]);
@@ -22,17 +18,7 @@ export default function App() {
     <ItemsContext.Provider value={[toLocationList, setToLocationList]}>
       <LogInContext.Provider value={[isLogged, setIsLogged]}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName={isLogged
-            ? 'HomeScreen'
-            : 'WelcomeScreen'
-          }
-            screenOptions={{ headerShown: false }}
-          >
-            <Stack.Screen
-              name='WelcomeScreen' component={WelcomeGuest} />
-            <Stack.Screen
-              name='HomeScreen' component={ItemList} />
-          </Stack.Navigator>
+          <MainNavigator />
         </NavigationContainer >
       </LogInContext.Provider>
     </ItemsContext.Provider>
