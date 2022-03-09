@@ -1,15 +1,17 @@
-import { StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native'
-import React, { useContext } from 'react'
-import ItemContainer from './ItemList/ItemContainer'
-import { LogInContext } from './ItemList/Provider/Provider'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React from 'react'
 import Colors from '../assets/Colors'
+import { useSelector, useDispatch } from 'react-redux'
+import { changeLogin } from '../store/actions/login.action'
+import { Alert } from 'react-native-web'
 
 const WelcomeGuest = ({ navigation }) => {
 
-  const [isLogged, setIsLogged] = useContext(LogInContext);
+  const dispatch = useDispatch();
+  // const isLogged = useSelector(state => state.isLogged.value)
 
-  handleChangeScreen = () => {
-    setIsLogged(true);
+  const handleChangeScreen = () => {
+    dispatch(changeLogin(true))
     navigation.navigate('HomeScreen')
   }
 

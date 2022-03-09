@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import WelcomeGuest from '../components/WelcomeGuest';
 import ItemList from '../components/ItemList/ItemList';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { ItemsContext } from './ItemList/Provider/Provider';
+import { useSelector } from 'react-redux';
+
 
 const Stack = createNativeStackNavigator();
 const MainScreenNavigator = () => {
 
-    const [isLogged, setIsLogged] = useContext(ItemsContext);
+    const isLogged = useSelector(state => state.isLogged.value)
+    console.log(isLogged)
 
     return (
         <Stack.Navigator
