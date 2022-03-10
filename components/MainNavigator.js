@@ -2,34 +2,26 @@ import { StyleSheet } from 'react-native'
 import React from 'react'
 import MainScreenNavigator from '../components/MainScreenNavigator';
 import TabScreenNavigator from '../components/TabScreenNavigator';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Colors from '../assets/Colors';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 
-const Tab = createMaterialTopTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const MainNavigator = () => {
     return (
         <NavigationContainer>
-            <Tab.Navigator
+            <Stack.Navigator
                 screenOptions={{
-                    headerShown: false,
-                    tabBarStyle: styles.tabBar,
-                    tabBarPressColor: Colors.LightViolet,
-                    tabBarActiveTintColor: Colors.BoldViolet,
+                    headerShown: false
                 }}
             >
-                <Tab.Screen name='MainScreenNavigator' component={MainScreenNavigator} />
-                <Tab.Screen name='TabScreenNavigator' component={TabScreenNavigator} />
-            </Tab.Navigator >
+                <Stack.Screen name='MainScreenNavigator' component={MainScreenNavigator} />
+                <Stack.Screen name='TabScreenNavigator' component={TabScreenNavigator} />
+            </Stack.Navigator >
         </NavigationContainer >
     )
 }
 
-const styles = StyleSheet.create({
-    tabBar: {
-        marginTop: 24,
-    }
-})
+const styles = StyleSheet.create({})
 
 export default MainNavigator
