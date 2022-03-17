@@ -1,25 +1,25 @@
 import { Image, StyleSheet, View, Dimensions, TouchableOpacity } from 'react-native'
-import React, { useContext } from 'react'
-import Colors from '../../assets/Colors'
+import React from 'react'
+import Colors from '../../assets/Constants/Colors'
 import Icon from 'react-native-vector-icons/Ionicons';
 import OptionItem from './OptionItem';
-import { SelectedContext } from './Provider/Provider';
+import { useSelector } from 'react-redux';
 
 const { width, height } = Dimensions.get('window');
 
 const LeftInfoScreen = () => {
 
-    const [selectedProfile, setSelectedProfile] = useContext(SelectedContext);
+    const value = useSelector(state => state.isGoing.value)
 
     return (
         <View style={styles.card}>
             <TouchableOpacity style={styles.touchableIcon}>
                 <Icon name='menu' size={64} color={Colors.Gray} />
             </TouchableOpacity>
-            <Image style={styles.image} source={require('../../assets/GLOCATION.png')} />
+            <Image style={styles.image} source={require('../../assets/Images/GLOCATION.png')} />
             <View style={{ height: height - 240, top: 64, justifyContent: 'space-around', alignItems: 'center' }}>
-                <OptionItem name={'walk'} selected={selectedProfile === 'walk' ? true : false} />
-                <OptionItem name={'bicycle'} selected={selectedProfile === 'bicycle' ? true : false} />
+                <OptionItem name={'walk'} selected={value === 'GO_WALKING' ? true : false} />
+                <OptionItem name={'bicycle'} selected={value === 'GO_CYCLING' ? true : false} />
             </View>
         </View>
     )

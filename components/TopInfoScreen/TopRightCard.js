@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native'
 import React from 'react'
-import Colors from '../../assets/Colors'
+import Colors from '../../assets/Constants/Colors'
 
 const TopRightCard = ({ children }) => {
   return (

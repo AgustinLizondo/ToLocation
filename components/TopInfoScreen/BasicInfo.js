@@ -1,21 +1,21 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React, { useContext } from 'react'
-import Colors from '../../assets/Colors'
-import { SelectedContext } from '../LeftInfoScreen/Provider/Provider'
+import React from 'react'
+import Colors from '../../assets/Constants/Colors'
 import Icon from 'react-native-vector-icons/Ionicons'
+import { useSelector } from 'react-redux'
 
 const BasicInfo = () => {
 
-    const [selectedProfile, setSelectedProfile] = useContext(SelectedContext);
+    const value = useSelector(state => state.isGoing.value)
     // Must update arrivalLongitude and arrivalTime with Google API
     const arrivalLongitude = '4.2';
     const arrivalTime = '01:25:46';
 
     return (
-        <View style={styles.mainCard}>
+        <View>
             <View style={styles.subTopCard}>
                 <TouchableOpacity style={styles.iconCard}>
-                    {selectedProfile === 'walk'
+                    {value === 'GO_WALKING'
                         ? <Icon name='walk' size={48} color={Colors.White} />
                         : <Icon name='bicycle' size={48} color={Colors.White} />
                     }
@@ -37,9 +37,9 @@ const BasicInfo = () => {
                 </View>
             </View>
             <View style={styles.textCard}>
-                <Text style={styles.boldBasicText}>{selectedProfile === 'walk' ? 'Walking' : 'Cycling'}</Text>
+                <Text style={styles.boldBasicText}>{value === 'GO_WALKING' ? 'Walking' : 'Cycling'}</Text>
                 <Text style={styles.basicText}>All are going good continue daily walking more than
-                    <Text style={styles.semiBoldBasicText}>{selectedProfile === 'walk' ? ' 100' : ' 60'} min </Text>
+                    <Text style={styles.semiBoldBasicText}>{value === 'GO_WALKING' ? ' 100' : ' 60'} min </Text>
                     to mantain your health.
                 </Text>
             </View>
@@ -50,9 +50,6 @@ const BasicInfo = () => {
 export default BasicInfo
 
 const styles = StyleSheet.create({
-    mainCard: {
-        paddingLeft: 24
-    },
     textCard: {
         paddingVertical: 12,
     },
