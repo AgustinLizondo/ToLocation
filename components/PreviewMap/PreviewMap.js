@@ -8,10 +8,10 @@ const windowHeigth = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 const PreviewMap = () => {
-    const status = useSelector(state => state.permission.value)
     const navigation = useNavigation()
-
+    
     async function handleLocation() {
+        const status = await useSelector(state => state.permission.value)
         if (status === 'granted') {
             let currentLocation = await Location.getCurrentPositionAsync();
             console.log(currentLocation)
