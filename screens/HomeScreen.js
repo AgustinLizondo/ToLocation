@@ -4,19 +4,9 @@ import TopRightCard from '../components/TopInfoScreen/TopRightCard'
 import BasicInfo from '../components/TopInfoScreen/BasicInfo'
 import AddingButton from '../components/AddingButton/AddingButton'
 import LeftInfoScreen from '../components/LeftInfoScreen/LeftInfoScreen'
-import * as Location from 'expo-location';
+import PreviewMap from '../components/PreviewMap/PreviewMap'
 
 const HomeScreen = ({ navigation }) => {
-
-    // async function handleLocation() {
-    //     let { status } = await Location.requestForegroundPermissionsAsync();
-    //     if (status === 'granted') {
-    //         let location = await Location.getCurrentPositionAsync({})
-    //         console.log(location)
-    //     }
-    // }
-    // handleLocation();
-
     return (
         <View style={styles.card}>
             <TopRightCard>
@@ -24,6 +14,7 @@ const HomeScreen = ({ navigation }) => {
             </TopRightCard>
             <LeftInfoScreen />
             <AddingButton />
+            <PreviewMap />
         </View>
     )
 }
