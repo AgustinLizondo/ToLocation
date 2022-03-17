@@ -8,13 +8,13 @@ const windowHeigth = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 const PreviewMap = () => {
-    // let status = 'granted'
     const status = useSelector(state => state.permission.value)
     const navigation = useNavigation()
 
     async function handleLocation() {
         if (status === 'granted') {
-            let currentLocation = await Location.requestForegroundPermissionsAsync();
+            let currentLocation = await Location.getCurrentPositionAsync();
+            console.log(currentLocation)
         } else {
             navigation.push('NotGranted')
         }

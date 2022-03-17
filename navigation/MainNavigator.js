@@ -16,7 +16,6 @@ const MainNavigator = () => {
     async function askForPermission() {
         try {
             let { status } = await Location.requestForegroundPermissionsAsync();
-            console.log(status)
             dispatch(changePermission(status));
         } catch (err) {
             console.log(err)
