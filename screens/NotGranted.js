@@ -3,16 +3,20 @@ import React from 'react'
 import Colors from '../assets/Constants/Colors'
 import { useNavigation } from '@react-navigation/native'
 import * as Location from 'expo-location'
+import { changePermission } from '../store/actions/permission.action'
+import { useDispatch } from 'react-redux'
 
 const NotGranted = () => {
 
     const navigation = useNavigation();
+    const dispatch = useDispatch();
 
     async function requestLocationPermission() {
         try {
             let { status } = await Location.requestForegroundPermissionsAsync()
             if (status === 'granted') {
-                navigation.navigate('Home')
+                navigation.navigate('Home');
+                dispatch(changePermission(status));
             }
         } catch (err) {
             console.log(err)
