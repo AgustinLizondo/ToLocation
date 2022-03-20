@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native'
-import React, { useContext } from 'react'
+import React, { useEffect } from 'react'
 import TopRightCard from '../components/TopInfoScreen/TopRightCard'
 import BasicInfo from '../components/TopInfoScreen/BasicInfo'
 import AddingButton from '../components/AddingButton/AddingButton'
@@ -12,15 +12,18 @@ import { changePermission } from '../store/actions/permission.action';
 const HomeScreen = () => {
 
     const dispatch = useDispatch();
-    async function askForPermission() {
-        try {
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            dispatch(changePermission(status));
-        } catch (err) {
-            console.log(err)
+
+    useEffect(() => {
+        async function askForPermission() {
+            try {
+                let { status } = await Location.requestForegroundPermissionsAsync();
+                dispatch(changePermission(status));
+            } catch (err) {
+                console.log(err)
+            }
         }
-    }
-    askForPermission();
+        askForPermission();
+    }, [])
 
     return (
         <View style={styles.card}>
@@ -28,7 +31,7 @@ const HomeScreen = () => {
                 <BasicInfo />
             </TopRightCard>
             <LeftInfoScreen />
-            <AddingButton />
+            {/* <AddingButton /> */}
             <PreviewMap />
         </View>
     )

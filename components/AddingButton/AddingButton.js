@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import React from 'react'
 import Colors from '../../assets/Constants/Colors'
 import Icon from 'react-native-vector-icons/FontAwesome5'
@@ -10,7 +10,12 @@ const AddingButton = () => {
     const navigation = useNavigation();
 
     const handleAddAdress = () => {
-        navigation.navigate('Addition')
+        // navigation.navigate('Addition')
+        Alert.alert(
+            `We're working on this section.`,
+            `Please be patient while we finish.`,
+            [`OK`]
+        )
     }
 
     return (

@@ -4,17 +4,22 @@ import Colors from '../../assets/Constants/Colors'
 import Icon from 'react-native-vector-icons/Ionicons';
 import OptionItem from './OptionItem';
 import { useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
 const LeftInfoScreen = () => {
 
+    const navigation = useNavigation();
     const value = useSelector(state => state.isGoing.value)
+    const handleGoProfile = () => {
+        navigation.navigate('Profile')
+    }
 
     return (
         <View style={styles.card}>
-            <TouchableOpacity style={styles.touchableIcon}>
-                <Icon name='menu' size={64} color={Colors.Gray} />
+            <TouchableOpacity style={styles.touchableIcon} onPress={handleGoProfile}>
+                <Icon name='person' size={48} color={Colors.Black} />
             </TouchableOpacity>
             <Image style={styles.image} source={require('../../assets/Images/GLOCATION.png')} />
             <View style={{ height: height - 240, top: 64, justifyContent: 'space-around', alignItems: 'center' }}>
@@ -47,5 +52,6 @@ const styles = StyleSheet.create({
     touchableIcon: {
         top: -80,
         alignSelf: 'center',
+        padding: 6,
     }
 })
