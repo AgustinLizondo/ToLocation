@@ -4,17 +4,20 @@ import Icon from 'react-native-vector-icons/Feather'
 import Colors from '../assets/Constants/Colors'
 import { useNavigation } from '@react-navigation/native';
 import IconLabel from '../components/ProfileIcons/IconLabel';
+import { useSelector } from 'react-redux';
 
 const windowHeigth = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 const ProfileScreen = () => {
 
+  const uuserData = useSelector(state => state.userData)
+  console.log(uuserData);
   const navigation = useNavigation();
 
   const userData = {
     userImage: 'https://images.pexels.com/photos/848117/pexels-photo-848117.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    userName: 'Benito Aguado',
+    // userName: 'Benito Aguado',
     userLocation: 'CABA, BA',
     userKm: '2.210',
     userPlaces: '120',
@@ -48,7 +51,7 @@ const ProfileScreen = () => {
             style={styles.profileImage}
           />
         </View>
-        <Text style={styles.userName}>{userData.userName}</Text>
+        <Text style={styles.userName}>{uuserData.userData.name}</Text>
         <Text style={styles.userLocation}>{userData.userLocation}</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', marginTop: 16 }}>
           <IconLabel name={'analytics'} label={'Kilometers'} number={userData.userKm} />
@@ -65,7 +68,6 @@ const styles = StyleSheet.create({
   card: {
     paddingVertical: 48,
     paddingHorizontal: 16,
-    // backgroundColor: Colors.LightViolet,
     height: (windowHeigth / 1.5)
   },
   profileImage: {

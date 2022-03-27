@@ -4,12 +4,16 @@ import * as Location from 'expo-location';
 import { useNavigation } from '@react-navigation/native';
 import Map from './Map';
 import Colors from '../../assets/Constants/Colors';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserData } from '../../store/actions/userdata.action';
 
 const windowHeigth = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 const PreviewMap = () => {
+    const name = useSelector(state => state.auth.email)
     const navigation = useNavigation();
+    const dispatch = useDispatch();
 
     const [region, setRegion] = useState({
         latitude: 34.4220014,
@@ -17,7 +21,6 @@ const PreviewMap = () => {
     });
 
     const verifyPermission = async () => {
-        // const status = await useSelector(state => state.permission.value);
         const { status } = await Location.requestForegroundPermissionsAsync()
 
         if (status !== 'granted') {
@@ -35,14 +38,12 @@ const PreviewMap = () => {
 
         const currentLocation = await Location.getCurrentPositionAsync();
         setRegion(currentLocation.coords);
+        dispatch(setUserData(name, region.latitude, region.longitude));
     }
 
     return (
         <View style={styles.map}>
-            {!region
-                ? <Text style={{ zIndex: 10000, marginTop: 100 }}>Loading Map...</Text>
-                : <Map region={region} />
-            }
+            <Map region={region} />
             <TouchableOpacity onPress={handleLocation} style={styles.button}>
                 <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 18 }} >Get Location</Text>
             </TouchableOpacity>
