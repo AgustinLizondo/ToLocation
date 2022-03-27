@@ -11,7 +11,9 @@ const windowHeigth = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
 
 const PreviewMap = () => {
+
     const name = useSelector(state => state.auth.email)
+
     const navigation = useNavigation();
     const dispatch = useDispatch();
 

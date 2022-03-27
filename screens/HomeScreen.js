@@ -2,17 +2,19 @@ import { StyleSheet, View } from 'react-native'
 import React, { useEffect } from 'react'
 import TopRightCard from '../components/TopInfoScreen/TopRightCard'
 import BasicInfo from '../components/TopInfoScreen/BasicInfo'
-import AddingButton from '../components/AddingButton/AddingButton'
 import LeftInfoScreen from '../components/LeftInfoScreen/LeftInfoScreen'
 import PreviewMap from '../components/PreviewMap/PreviewMap'
 import * as Location from 'expo-location';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { changePermission } from '../store/actions/permission.action';
+import { setUserData } from '../store/actions/userdata.action'
 
 const HomeScreen = () => {
 
-    const dispatch = useDispatch();
+    const name = useSelector(state => state.auth.email)
 
+    const dispatch = useDispatch();
+    dispatch(setUserData(name));
     useEffect(() => {
         async function askForPermission() {
             try {
@@ -31,7 +33,6 @@ const HomeScreen = () => {
                 <BasicInfo />
             </TopRightCard>
             <LeftInfoScreen />
-            {/* <AddingButton /> */}
             <PreviewMap />
         </View>
     )
