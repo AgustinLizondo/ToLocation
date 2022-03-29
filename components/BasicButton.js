@@ -1,10 +1,11 @@
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import Colors from '../assets/Constants/Colors'
 import React from 'react'
 
-const BasicButton = () => {
+const BasicButton = ({ onTap, text }) => {
     return (
-        <TouchableOpacity onPress={handleLocation} style={styles.button}>
-            <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 18 }} >Get Location</Text>
+        <TouchableOpacity onPress={onTap} style={styles.button}>
+            <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 18 }} >{text}</Text>
         </TouchableOpacity>
     )
 }

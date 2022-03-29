@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 
 const MainNavigator = () => {
 
-    const isAuthenticated = useSelector(state => state.auth.userId);
+    const isAuthenticated = useSelector(state => state.auth.userId); 
 
     return (
         <NavigationContainer>
@@ -20,6 +20,7 @@ const MainNavigator = () => {
                 screenOptions={{
                     headerShown: false,
                 }}
+                // initialRouteName='Addition'
             >
                 {isAuthenticated
                     ?
@@ -28,12 +29,13 @@ const MainNavigator = () => {
                         <Stack.Screen name='Addition' component={AdditionScreen} />
                         <Stack.Screen name='NotGranted' component={NotGranted} />
                         <Stack.Screen name='Profile' component={ProfileScreen} />
-                    </>
-                    :
-                    <>
+                        </>
+                        :
+                        <>
                         <Stack.Screen name='Auth' component={AuthScreen} />
-                    </>
-                }
+                        </>
+                    }
+                    {/* <Stack.Screen name='Addition' component={AdditionScreen} /> */}
             </Stack.Navigator>
         </NavigationContainer >
     )

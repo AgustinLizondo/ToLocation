@@ -3,17 +3,18 @@ import { insertUserData, loadUserData } from "../../db";
 export const INSERT_DATA = 'INSERT_DATA';
 export const LOAD_DATA = 'LOAD_DATA';
 
-export const setUserData = (name, latitude, longitude) => {
+export const setUserData = (name, latitude, longitude, city) => {
     return async dispatch => {
         try {
-            const result = await insertUserData(name, latitude, longitude)
+            const result = await insertUserData(name, latitude, longitude, city)
 
             dispatch({
                 type: INSERT_DATA,
                 userData: {
                     name: name,
                     latitude: latitude,
-                    longitude: longitude
+                    longitude: longitude,
+                    city: city
                 }
             })
         } catch (err) {

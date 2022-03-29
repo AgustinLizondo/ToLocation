@@ -1,7 +1,12 @@
 import { INSERT_DATA, LOAD_DATA } from "../actions/userdata.action"
 
 const INITIAL_STATE = {
-    userData: null,
+    userData: {
+        name: 'User',
+        latitude: '34.4220014',
+        longitude: '-112.0840214',
+        city: 'CA, USA',
+    },
 }
 
 const UserReducer = (state = INITIAL_STATE, action) => {

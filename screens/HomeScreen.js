@@ -43,7 +43,6 @@ export default HomeScreen
 const styles = StyleSheet.create({
     card: {
         flex: 1,
-        backgroundColor: '#fff',
         marginTop: 64,
     }
 })

@@ -6,8 +6,9 @@ import Fonts from './assets/Constants/Fonts';
 import { Provider } from 'react-redux'
 import store from './store'
 import MainNavigator from './navigation/MainNavigator';
-import { init } from './db';
+import { dropTable, init } from './db';
 
+dropTable();
 init()
   .then(() => console.log('Database is running'))
   .catch((err) => console.log(err))

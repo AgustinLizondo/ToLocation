@@ -5,6 +5,7 @@ import Colors from '../assets/Constants/Colors'
 import { useNavigation } from '@react-navigation/native';
 import IconLabel from '../components/ProfileIcons/IconLabel';
 import { useSelector } from 'react-redux';
+import { dropTable } from '../db';
 
 const windowHeigth = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -18,7 +19,7 @@ const ProfileScreen = () => {
   const userData = {
     userImage: 'https://images.pexels.com/photos/848117/pexels-photo-848117.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     // userName: 'Benito Aguado',
-    userLocation: 'CABA, BA',
+    // userLocation: 'CABA, BA',
     userKm: '2.210',
     userPlaces: '120',
   }
@@ -52,7 +53,7 @@ const ProfileScreen = () => {
           />
         </View>
         <Text style={styles.userName}>{uuserData.userData.name}</Text>
-        <Text style={styles.userLocation}>{userData.userLocation}</Text>
+        <Text style={styles.userLocation}>{uuserData.userData.city}</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', marginTop: 16 }}>
           <IconLabel name={'analytics'} label={'Kilometers'} number={userData.userKm} />
           <IconLabel name={'navigate'} label={'Places'} number={userData.userPlaces} />

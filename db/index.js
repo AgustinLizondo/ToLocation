@@ -10,7 +10,8 @@ export const init = () => {
           id INTEGER PRIMARY KEY NOT NULL,
           name TEXT NOT NULL,
           latitude REAL,
-          longitude REAL
+          longitude REAL,
+          city TEXT
         )`,
                 [],
                 () => { resolve() },
@@ -22,12 +23,12 @@ export const init = () => {
     return promise;
 }
 
-export const insertUserData = (name, latitude, longitude) => {
+export const insertUserData = (name, latitude, longitude, city) => {
     const promise = new Promise((resolve, reject) => {
         dataBase.transaction(tx => {
             tx.executeSql(
-                `INSERT INTO userdata (name, latitude, longitude) VALUES (?, ?, ?)`,
-                [name, latitude, longitude],
+                `INSERT INTO userdata (name, latitude, longitude, city) VALUES (?, ?, ?, ?)`,
+                [name, latitude, longitude, city],
                 (_, result) => { resolve(result) },
                 (_, err) => { reject(err) },
             )
@@ -52,17 +53,17 @@ export const loadUserData = () => {
     return promise;
 }
 
-// export const dropTable = () => {
-//     const promise = new Promise((resolve, reject) => {
-//         dataBase.transaction(tx => {
-//             tx.executeSql(
-//                 'DROP TABLE userdata',
-//                 [],
-//                 (_, result) => { resolve(result) },
-//                 (_, err) => { reject(err) },
-//             )
-//         })
-//     })
+export const dropTable = () => {
+    const promise = new Promise((resolve, reject) => {
+        dataBase.transaction(tx => {
+            tx.executeSql(
+                'DROP TABLE userdata',
+                [],
+                (_, result) => { resolve(result) },
+                (_, err) => { reject(err) },
+            )
+        })
+    })
 
-//     return promise;
-// }
+    return promise;
+}
