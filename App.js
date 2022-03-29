@@ -8,7 +8,7 @@ import store from './store'
 import MainNavigator from './navigation/MainNavigator';
 import { dropTable, init } from './db';
 
-dropTable();
+// dropTable();
 init()
   .then(() => console.log('Database is running'))
   .catch((err) => console.log(err))

@@ -1,4 +1,5 @@
 import { StyleSheet, View, Dimensions } from 'react-native';
+import {GOOGLE_API_KEY} from '@env'
 import React, { useState, useEffect, useRef } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons'
 import * as Location from 'expo-location';
@@ -47,7 +48,7 @@ const PreviewMap = () => {
                 style={{
                     height: 20,
                     width: 20,
-                    borderRadius: 20,
+                    borderRadius: 10,
                     alignItems: 'center',
                     justifyContent: 'center',
                     backgroundColor: Colors.Gray
@@ -57,7 +58,7 @@ const PreviewMap = () => {
                     style={{
                         height: 15,
                         width: 15,
-                        borderRadius: 15,
+                        borderRadius: 10,
                         alignItems: 'center',
                         justifyContent: 'center',
                         backgroundColor: Colors.SemiLightViolet
@@ -104,7 +105,7 @@ const PreviewMap = () => {
 
     useEffect(() => {
         const getCity = async () => {
-            let result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${region.latitude},${region.longitude}&key=AIzaSyCro3SkUBldTnt4vhg7lZuRrrrMg5Jwcx0`),
+            let result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${region.latitude},${region.longitude}&key=${GOOGLE_API_KEY}`),
                 resultJson = await result.json(),
                 cityData = resultJson.plus_code.compound_code;
 
@@ -164,7 +165,7 @@ const PreviewMap = () => {
                 <MapViewDirections
                     origin={fromLocation}
                     destination={toLocation}
-                    apikey='AIzaSyCro3SkUBldTnt4vhg7lZuRrrrMg5Jwcx0'
+                    apikey={GOOGLE_API_KEY}
                     strokeWidth={5}
                     strokeColor={Colors.LightViolet}
                     optimizeWaypoints={true}
