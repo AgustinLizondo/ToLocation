@@ -180,12 +180,12 @@ const PreviewMap = () => {
                                 }
                             })
 
-                            let nextLoc = {
-                                latitude: result.coordinates[0]["latitude"],
-                                longitude: result.coordinates[0]["longitude"]
-                            }
+                            // let nextLoc = {
+                                // latitude: result.coordinates[0]["latitude"],
+                                // longitude: result.coordinates[0]["longitude"]
+                            // }
 
-                            setFromLocation(nextLoc)
+                            // setFromLocation(nextLoc)
                             setIsReady(true)
                         }
                     }}
