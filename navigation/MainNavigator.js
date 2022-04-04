@@ -24,18 +24,17 @@ const MainNavigator = () => {
             >
                 {isAuthenticated
                     ?
-                    <>
-                        <Stack.Screen name='Home' component={HomeScreen} />
-                        <Stack.Screen name='Addition' component={AdditionScreen} />
-                        <Stack.Screen name='NotGranted' component={NotGranted} />
-                        <Stack.Screen name='Profile' component={ProfileScreen} />
-                        </>
-                        :
                         <>
-                        <Stack.Screen name='Auth' component={AuthScreen} />
+                            <Stack.Screen name='Home' component={HomeScreen} />
+                            <Stack.Screen name='Addition' component={AdditionScreen} />
+                            <Stack.Screen name='NotGranted' component={NotGranted} />
+                            <Stack.Screen name='Profile' component={ProfileScreen} />
+                        </>
+                    :
+                        <>
+                            <Stack.Screen name='Auth' component={AuthScreen} />
                         </>
                     }
-                    {/* <Stack.Screen name='Addition' component={AdditionScreen} /> */}
             </Stack.Navigator>
         </NavigationContainer >
     )

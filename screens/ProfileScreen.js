@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions, Alert } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, Dimensions, Alert, FlatList } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Feather'
 import Colors from '../assets/Constants/Colors'
@@ -6,6 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 import IconLabel from '../components/ProfileIcons/IconLabel';
 import { useSelector } from 'react-redux';
 import { dropTable } from '../db';
+import LocationButton from '../components/ProfileIcons/LocationButton';
+import { data } from '../assets/Constants/Headquarters'
 
 const windowHeigth = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
@@ -13,13 +15,10 @@ const windowWidth = Dimensions.get('window').width;
 const ProfileScreen = () => {
 
   const uuserData = useSelector(state => state.userData)
-  console.log(uuserData);
   const navigation = useNavigation();
 
   const userData = {
     userImage: 'https://images.pexels.com/photos/848117/pexels-photo-848117.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-    // userName: 'Benito Aguado',
-    // userLocation: 'CABA, BA',
     userKm: '2.210',
     userPlaces: '120',
   }
@@ -36,30 +35,36 @@ const ProfileScreen = () => {
   }
 
   return (
-    <>
-      <View style={styles.card}>
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 32 }}>
-          <TouchableOpacity onPress={handleGoBack}>
-            <Icon name='x' size={28} color={Colors.Black} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={handleEditProfile}>
-            <Icon name='edit' size={28} color={Colors.Black} />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.shadow}>
-          <Image
-            source={{ uri: userData.userImage }}
-            style={styles.profileImage}
-          />
-        </View>
-        <Text style={styles.userName}>{uuserData.userData.name}</Text>
-        <Text style={styles.userLocation}>{uuserData.userData.city}</Text>
-        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', marginTop: 16 }}>
-          <IconLabel name={'analytics'} label={'Kilometers'} number={userData.userKm} />
-          <IconLabel name={'navigate'} label={'Places'} number={userData.userPlaces} />
-        </View>
+    <View style={styles.card}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: 32 }}>
+        <TouchableOpacity onPress={handleGoBack}>
+          <Icon name='x' size={28} color={Colors.Black} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleEditProfile}>
+          <Icon name='edit' size={28} color={Colors.Black} />
+        </TouchableOpacity>
       </View>
-    </>
+      <View style={styles.shadow}>
+        <Image
+          source={{ uri: userData.userImage }}
+          style={styles.profileImage}
+        />
+      </View>
+      <Text style={styles.userName}>{uuserData.userData.name}</Text>
+      <Text style={styles.userLocation}>{uuserData.userData.city}</Text>
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', marginTop: 16 }}>
+        <IconLabel name={'analytics'} label={'Kilometers'} number={userData.userKm} />
+        <IconLabel name={'navigate'} label={'Places'} number={userData.userPlaces} />
+      </View>
+      <View style={{ marginTop: 32, justifyContent: 'space-between', alignItems: 'center', alignSelf: 'center' }}>
+        <FlatList
+          data={data}
+          renderItem={LocationButton}
+          numColumns={4}
+          keyExtractor={(item) => item.index}
+        />
+      </View>
+    </View>
   )
 }
 
@@ -69,7 +74,7 @@ const styles = StyleSheet.create({
   card: {
     paddingVertical: 48,
     paddingHorizontal: 16,
-    height: (windowHeigth / 1.5)
+    height: (windowHeigth / 1.5),
   },
   profileImage: {
     width: '100%',

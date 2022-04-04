@@ -28,8 +28,6 @@ const PreviewMap = () => {
     let currentLatitude = (userData.latitude)
     let currentLongitude = (userData.longitude)
 
-    console.log(currentLatitude, currentLongitude);
-
     const [fromLocation, setFromLocation] = useState({
         latitude: 34.4220014,
         longitude: -112.0840214,
@@ -131,6 +129,9 @@ const PreviewMap = () => {
             latitude: currentLocation.coords.latitude,
             longitude: currentLocation.coords.longitude,
         }
+
+        if (!realRegion.latitude) return;
+
         setRegion(realRegion);
         setFromLocation({
             latitude: currentLatitude,
@@ -193,10 +194,6 @@ const PreviewMap = () => {
                 {destinationMarker()}
                 {userIcon()}
             </MapView>
-            {/* {region.latitude === 34.4220014
-                ? <BasicButton onTap={handleLocation} text='Get Location' />
-                : <BasicButton onTap={handleAddLocation} text='Set Destination' />
-            } */}
             <BasicButton onTap={handleLocation} text='Get Location' />
         </View>
     )

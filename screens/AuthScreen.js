@@ -26,7 +26,7 @@ const AuthScreen = () => {
                     <Text style={styles.dataLabel}>Email</Text>
                     <TextInput style={styles.dataForm} keyboardType='email-address' onChangeText={(text) => setEmail(text)} />
                 </View>
-                <View>
+                <View style={{marginTop: 12}}>
                     <Text style={styles.dataLabel}>Password</Text>
                     <TextInput style={styles.dataForm} onChangeText={(text) => setPassword(text)} />
                 </View>
