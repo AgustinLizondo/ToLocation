@@ -5,13 +5,15 @@ import LoginReducer from './reducers/login.reducer';
 import PermissionReducer from './reducers/permission.reducer';
 import AuthReducer from './reducers/auth.reducer';
 import UserReducer from './reducers/userdata.reducer';
+import DestinationReducer from './reducers/destination.reducer';
 
 const RootReducer = combineReducers({
     isLogged: LoginReducer,
     isGoing: GoReducer,
     permission: PermissionReducer,
     auth: AuthReducer,
-    userData: UserReducer
+    userData: UserReducer,
+    destination: DestinationReducer,
 })
 
 export default createStore(RootReducer, applyMiddleware(thunk));

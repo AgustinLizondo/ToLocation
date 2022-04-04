@@ -57,6 +57,7 @@ const ProfileScreen = () => {
         <IconLabel name={'navigate'} label={'Places'} number={userData.userPlaces} />
       </View>
       <View style={{ marginTop: 32, justifyContent: 'space-between', alignItems: 'center', alignSelf: 'center' }}>
+        <Text>Headquarters</Text>
         <FlatList
           data={data}
           renderItem={LocationButton}

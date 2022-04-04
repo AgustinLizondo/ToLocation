@@ -3,17 +3,21 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Colors from '../../assets/Constants/Colors'
 import { useDispatch } from 'react-redux'
+import { goThere } from '../../store/actions/destination.action'
 
 const LocationButton = (data) => {
+    const dispatch = useDispatch();
     let item = data.item
-
-    const handleSetDestination = () => {
+    console.log(item.location)
+    
+    function handleSetDestination() {
         // Here we need to set "toLocation" variable used in "PreviewMap" 
         // To set the destination.
+        dispatch(goThere(item.location))
     }
 
     return (
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleSetDestination}>
             <Icon name={item.logo} size={32} />
             <Text>{item.name}</Text>
         </TouchableOpacity>

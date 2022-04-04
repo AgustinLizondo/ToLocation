@@ -1,5 +1,5 @@
 import { StyleSheet, View, Dimensions } from 'react-native';
-import {GOOGLE_API_KEY} from '@env'
+import { GOOGLE_API_KEY } from '@env'
 import React, { useState, useEffect, useRef } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons'
 import * as Location from 'expo-location';
@@ -17,8 +17,6 @@ const windowWidth = Dimensions.get('window').width;
 
 const PreviewMap = () => {
 
-    ///////////////////////////////////////////////////
-
     const mapView = useRef()
 
     const [isReady, setIsReady] = useState(false)
@@ -33,10 +31,7 @@ const PreviewMap = () => {
         longitude: -112.0840214,
     })
 
-    const [toLocation, setToLocation] = useState({
-        latitude: 36.952845,
-        longitude: -121.7309,
-    })
+    const toLocation = useSelector(state => state.destination)
 
     const destinationMarker = () => (
         <Marker
@@ -75,8 +70,6 @@ const PreviewMap = () => {
             <Icon name={'person'} size={16} color={Colors.SemiLightViolet} />
         </Marker>
     )
-
-    ///////////////////////////////////////////////////
 
     const name = useSelector(state => state.auth.email)
 
@@ -141,10 +134,6 @@ const PreviewMap = () => {
         dispatch(setUserData(name, region.latitude, region.longitude, city));
     }
 
-    const handleAddLocation = async () => {
-        navigation.navigate('Addition')
-    }
-
     return (
         <View style={styles.map}>
             <MapView
@@ -182,8 +171,8 @@ const PreviewMap = () => {
                             })
 
                             // let nextLoc = {
-                                // latitude: result.coordinates[0]["latitude"],
-                                // longitude: result.coordinates[0]["longitude"]
+                            // latitude: result.coordinates[0]["latitude"],
+                            // longitude: result.coordinates[0]["longitude"]
                             // }
 
                             // setFromLocation(nextLoc)
