@@ -6,6 +6,7 @@ import PermissionReducer from './reducers/permission.reducer';
 import AuthReducer from './reducers/auth.reducer';
 import UserReducer from './reducers/userdata.reducer';
 import DestinationReducer from './reducers/destination.reducer';
+import LocationReducer from './reducers/location.reducer'
 
 const RootReducer = combineReducers({
     isLogged: LoginReducer,
@@ -14,6 +15,7 @@ const RootReducer = combineReducers({
     auth: AuthReducer,
     userData: UserReducer,
     destination: DestinationReducer,
+    location: LocationReducer
 })
 
 export default createStore(RootReducer, applyMiddleware(thunk));

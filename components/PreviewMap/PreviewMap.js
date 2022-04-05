@@ -6,6 +6,7 @@ import * as Location from 'expo-location';
 import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUserData } from '../../store/actions/userdata.action';
+import { fromThere } from '../../store/actions/location.action'
 import BasicButton from '../BasicButton';
 import Colors from '../../assets/Constants/Colors';
 import MapViewDirections from 'react-native-maps-directions'
@@ -14,6 +15,17 @@ import MapView, { Marker } from 'react-native-maps'
 
 const windowHeigth = Dimensions.get('window').height;
 const windowWidth = Dimensions.get('window').width;
+
+export const verifyPermission = async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync()
+
+    if (status !== 'granted') {
+        navigation.navigate('NotGranted')
+
+        return false;
+    }
+    return true;
+}
 
 const PreviewMap = () => {
 
@@ -26,12 +38,8 @@ const PreviewMap = () => {
     let currentLatitude = (userData.latitude)
     let currentLongitude = (userData.longitude)
 
-    const [fromLocation, setFromLocation] = useState({
-        latitude: 34.4220014,
-        longitude: -112.0840214,
-    })
-
     const toLocation = useSelector(state => state.destination)
+    const fromLocation = useSelector(state => state.location)
 
     const destinationMarker = () => (
         <Marker
@@ -83,17 +91,6 @@ const PreviewMap = () => {
 
     const [city, setCity] = useState('City not provided yet');
 
-    const verifyPermission = async () => {
-        const { status } = await Location.requestForegroundPermissionsAsync()
-
-        if (status !== 'granted') {
-            navigation.navigate('NotGranted')
-
-            return false;
-        }
-        return true;
-    }
-
     useEffect(() => {
         const getCity = async () => {
             let result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${region.latitude},${region.longitude}&key=${GOOGLE_API_KEY}`),
@@ -126,11 +123,10 @@ const PreviewMap = () => {
         if (!realRegion.latitude) return;
 
         setRegion(realRegion);
-        setFromLocation({
-            latitude: currentLatitude,
-            longitude: currentLongitude,
-        })
-
+        dispatch(fromThere({
+            latitude: currentLocation.coords.latitude,
+            longitude: currentLocation.coords.longitude,
+        }))
         dispatch(setUserData(name, region.latitude, region.longitude, city));
     }
 

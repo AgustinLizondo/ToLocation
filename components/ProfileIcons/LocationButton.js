@@ -4,16 +4,15 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import Colors from '../../assets/Constants/Colors'
 import { useDispatch } from 'react-redux'
 import { goThere } from '../../store/actions/destination.action'
+import { useNavigation } from '@react-navigation/native'
 
-const LocationButton = (data) => {
+const LocationButton = ({ item }) => {
     const dispatch = useDispatch();
-    let item = data.item
-    console.log(item.location)
-    
+    const navigation = useNavigation();
+
     function handleSetDestination() {
-        // Here we need to set "toLocation" variable used in "PreviewMap" 
-        // To set the destination.
         dispatch(goThere(item.location))
+        navigation.goBack();
     }
 
     return (

@@ -14,7 +14,6 @@ init()
   .catch((err) => console.log(err))
 
 export default function App() {
-
   const [loaded] = useFonts(Fonts);
   if (!loaded) return <AppLoading />
 

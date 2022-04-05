@@ -60,7 +60,7 @@ const ProfileScreen = () => {
         <Text>Headquarters</Text>
         <FlatList
           data={data}
-          renderItem={LocationButton}
+          renderItem={({item})=><LocationButton item={item}/>}
           numColumns={4}
           keyExtractor={(item) => item.index}
         />

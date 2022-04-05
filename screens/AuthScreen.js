@@ -3,10 +3,26 @@ import React, { useState } from 'react';
 import Colors from '../assets/Constants/Colors';
 import { useDispatch } from 'react-redux';
 import { signUp, signIn } from '../store/actions/auth.action';
+import * as Location from 'expo-location';
+import { fromThere } from '../store/actions/location.action'
+import { verifyPermission } from '../components/PreviewMap/PreviewMap'
 
 const AuthScreen = () => {
 
     const dispatch = useDispatch();
+
+    const getLocation = async () => {
+        const isGranted = await verifyPermission();
+
+        if (!isGranted) return;
+
+        const currentLocation = await Location.getCurrentPositionAsync();
+        dispatch(fromThere({
+            latitude: currentLocation.coords.latitude,
+            longitude: currentLocation.coords.longitude,
+        }))
+    }
+    getLocation();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -26,7 +42,7 @@ const AuthScreen = () => {
                     <Text style={styles.dataLabel}>Email</Text>
                     <TextInput style={styles.dataForm} keyboardType='email-address' onChangeText={(text) => setEmail(text)} />
                 </View>
-                <View style={{marginTop: 12}}>
+                <View style={{ marginTop: 12 }}>
                     <Text style={styles.dataLabel}>Password</Text>
                     <TextInput style={styles.dataForm} onChangeText={(text) => setPassword(text)} />
                 </View>
