@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { signUp, signIn } from '../store/actions/auth.action';
 import * as Location from 'expo-location';
 import { fromThere } from '../store/actions/location.action'
+import { setUserData } from '../store/actions/userdata.action'
 import { verifyPermission } from '../components/PreviewMap/PreviewMap'
 
 const AuthScreen = () => {
@@ -28,6 +29,7 @@ const AuthScreen = () => {
     const [password, setPassword] = useState('');
 
     const handleLogIn = () => {
+        dispatch(setUserData({ name: email }))
         dispatch(signIn(email, password))
     }
 
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2,
         width: '75%',
         fontFamily: 'Poppins-Regular',
-        fontSize: 20,
+        fontSize: 16,
         color: Colors.Black
     },
     dataLabel: {

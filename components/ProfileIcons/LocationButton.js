@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, Pressable, Platform, View } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Colors from '../../assets/Constants/Colors'
@@ -16,10 +16,14 @@ const LocationButton = ({ item }) => {
     }
 
     return (
-        <TouchableOpacity style={styles.button} onPress={handleSetDestination}>
+        <Pressable
+            style={styles.button}
+            onPress={handleSetDestination}
+            android_ripple={{ color: Colors.LightViolet, borderRadius: 16 }}
+        >
             <Icon name={item.logo} size={32} />
             <Text>{item.name}</Text>
-        </TouchableOpacity>
+        </Pressable>
     )
 }
 

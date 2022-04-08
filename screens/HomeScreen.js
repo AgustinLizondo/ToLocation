@@ -5,16 +5,12 @@ import BasicInfo from '../components/TopInfoScreen/BasicInfo'
 import LeftInfoScreen from '../components/LeftInfoScreen/LeftInfoScreen'
 import PreviewMap from '../components/PreviewMap/PreviewMap'
 import * as Location from 'expo-location';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch  } from 'react-redux';
 import { changePermission } from '../store/actions/permission.action';
-import { setUserData } from '../store/actions/userdata.action'
 
 const HomeScreen = () => {
 
-    const name = useSelector(state => state.auth.email)
-
     const dispatch = useDispatch();
-    dispatch(setUserData(name));
     useEffect(() => {
         async function askForPermission() {
             try {

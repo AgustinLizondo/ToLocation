@@ -50,8 +50,8 @@ const ProfileScreen = () => {
           style={styles.profileImage}
         />
       </View>
-      <Text style={styles.userName}>{uuserData.userData.name}</Text>
-      <Text style={styles.userLocation}>{uuserData.userData.city}</Text>
+      <Text style={styles.userName}>{uuserData.name}</Text>
+      <Text style={styles.userLocation}>{uuserData.city}</Text>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly', marginTop: 16 }}>
         <IconLabel name={'analytics'} label={'Kilometers'} number={userData.userKm} />
         <IconLabel name={'navigate'} label={'Places'} number={userData.userPlaces} />
@@ -60,7 +60,7 @@ const ProfileScreen = () => {
         <Text>Headquarters</Text>
         <FlatList
           data={data}
-          renderItem={({item})=><LocationButton item={item}/>}
+          renderItem={({ item }) => <LocationButton item={item} />}
           numColumns={4}
           keyExtractor={(item) => item.index}
         />

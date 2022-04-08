@@ -33,7 +33,7 @@ const PreviewMap = () => {
 
     const [isReady, setIsReady] = useState(false)
 
-    let userData = useSelector(state => state.userData.userData)
+    let userData = useSelector(state => state.userData)
 
     let currentLatitude = (userData.latitude)
     let currentLongitude = (userData.longitude)
@@ -78,8 +78,6 @@ const PreviewMap = () => {
             <Icon name={'person'} size={16} color={Colors.SemiLightViolet} />
         </Marker>
     )
-
-    const name = useSelector(state => state.auth.email)
 
     const navigation = useNavigation();
     const dispatch = useDispatch();
@@ -127,7 +125,7 @@ const PreviewMap = () => {
             latitude: currentLocation.coords.latitude,
             longitude: currentLocation.coords.longitude,
         }))
-        dispatch(setUserData(name, region.latitude, region.longitude, city));
+        dispatch(setUserData({ city: city }))
     }
 
     return (

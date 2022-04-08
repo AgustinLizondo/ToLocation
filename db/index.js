@@ -7,12 +7,10 @@ export const init = () => {
         dataBase.transaction((tx) => {
             tx.executeSql(
                 `CREATE TABLE IF NOT EXISTS userdata (
-          id INTEGER PRIMARY KEY NOT NULL,
-          name TEXT NOT NULL,
-          latitude REAL,
-          longitude REAL,
-          city TEXT
-        )`,
+                id INTEGER PRIMARY KEY NOT NULL,
+                name TEXT NOT NULL,
+                city TEXT
+                )`,
                 [],
                 () => { resolve() },
                 (_, err) => { reject(err) },
@@ -23,12 +21,12 @@ export const init = () => {
     return promise;
 }
 
-export const insertUserData = (name, latitude, longitude, city) => {
+export const insertUserData = (name, city) => { 
     const promise = new Promise((resolve, reject) => {
         dataBase.transaction(tx => {
             tx.executeSql(
-                `INSERT INTO userdata (name, latitude, longitude, city) VALUES (?, ?, ?, ?)`,
-                [name, latitude, longitude, city],
+                `INSERT INTO userdata (name, city) VALUES (?, ?)`,
+                [name, city],
                 (_, result) => { resolve(result) },
                 (_, err) => { reject(err) },
             )
