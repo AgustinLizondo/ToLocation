@@ -1,5 +1,5 @@
 import { StyleSheet, View, Dimensions } from 'react-native';
-import { GOOGLE_API_KEY } from '@env'
+import config from '../../config'
 import React, { useState, useEffect, useRef } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons'
 import * as Location from 'expo-location';
@@ -91,7 +91,7 @@ const PreviewMap = () => {
 
     useEffect(() => {
         const getCity = async () => {
-            let result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${region.latitude},${region.longitude}&key=${GOOGLE_API_KEY}`),
+            let result = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${region.latitude},${region.longitude}&key=${config.GOOGLE_API_KEY}`),
                 resultJson = await result.json(),
                 cityData = resultJson.plus_code.compound_code;
 
@@ -149,7 +149,7 @@ const PreviewMap = () => {
                 <MapViewDirections
                     origin={fromLocation}
                     destination={toLocation}
-                    apikey={GOOGLE_API_KEY}
+                    apikey={config.GOOGLE_API_KEY}
                     strokeWidth={5}
                     strokeColor={Colors.LightViolet}
                     optimizeWaypoints={true}

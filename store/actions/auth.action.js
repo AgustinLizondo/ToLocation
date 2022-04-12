@@ -1,10 +1,10 @@
 import { Alert } from 'react-native'
-import {FIREBASE_API_KEY} from '@env'
+import config from '../../config'
 
 export const SIGN_UP = 'SIGN_UP';
 export const SIGN_IN = 'SIGN_IN';
-let FIREBASE_SIGN_UP = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${FIREBASE_API_KEY}`;
-let FIREBASE_SIGN_IN = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${FIREBASE_API_KEY}`;
+let FIREBASE_SIGN_UP = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${config.FIREBASE_API_KEY}`;
+let FIREBASE_SIGN_IN = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${config.FIREBASE_API_KEY}`;
 
 const verifySigning = (data) => {
     if (data.error) {

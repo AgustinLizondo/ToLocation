@@ -12,7 +12,6 @@ const INITIAL_STATE = {
 const UserReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case INSERT_DATA:
-            console.log(action.payload)
             return { ...state, ...action.payload }
         case LOAD_DATA:
             return { ...state, ...action.payload }

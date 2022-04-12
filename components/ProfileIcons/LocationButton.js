@@ -1,4 +1,4 @@
-import { StyleSheet, Text, Pressable, Platform, View } from 'react-native'
+import { StyleSheet, Text, Pressable } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Colors from '../../assets/Constants/Colors'
@@ -19,7 +19,7 @@ const LocationButton = ({ item }) => {
         <Pressable
             style={styles.button}
             onPress={handleSetDestination}
-            android_ripple={{ color: Colors.LightViolet, borderRadius: 16 }}
+            android_ripple={{ color: Colors.LightViolet }}
         >
             <Icon name={item.logo} size={32} />
             <Text>{item.name}</Text>
@@ -45,6 +45,6 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.White,
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        margin: 4
+        margin: 4,
     }
 })

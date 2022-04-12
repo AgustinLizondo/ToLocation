@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "ToLocation",
+    "name": "To Location",
     "slug": "ToLocation",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/Images/adaptive-icon.png",
         "backgroundColor": "#333333"
-      }
+      },
+      "package": "com.tolocation.android"
     },
     "web": {
       "favicon": "./assets/Images/favicon.png"
